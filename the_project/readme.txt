@@ -1,5 +1,42 @@
 分工：
 赵正一-202100460049 ： 7 8 9 10 11 12 
+王越-202100460102：1 2 3 4 5
+
+
+Project1: implement the naïve birthday attack of reduced SM3
+
+实现内容与技巧：使用了openssl库的SM3算法。
+以加密结果的前32bit为例，当作简单SM3来进行破解。
+代码采取了用空间换时间的方法，将经过的点转换为整型，再用map储存查找。
+
+运行时间：0.296s
+
+Project2: implement the Rho method of reduced SM3
+
+实现内容与技巧：同样使用openssl库来调用SM3，利用加密结果前32bit作为简单SM3。
+由于为了快速步入循环并找到重复，算法采取了大小步方式，一个正常便利循环，一个在另一个多次循环后再进行移动一次。
+
+运行时间：0.169s
+
+Project3: implement length extension attack for SM3, SHA256, etc.
+
+实现内容和技巧：这里以SM3为例进行扩展攻击，攻击以openssl库调用SM3算法得到的结果为正确值，对自己构造的SM3扩展加密的结果进行对比。
+由于需要对SM3加密内容进行扩展和加密，所以要构造明文扩展，密钥的轮函数，明文拼接，格式转换等多个方面。
+
+运行时间：0.362s
+
+Project4: do your best to optimize SM3 implementation (software)
+
+实现内容和技巧：基础的SM3构造在Project3中已经完成，当时加密一次大概需要1.624s的时间，在此基础上进行加速。
+经过时间测试发现对于ModAdd，LeftShift两个模块的调用运行时间最长，于是对两模块进行优化。
+
+运行时间：0.062s
+
+Project5: Impl Merkle Tree following RFC6962
+
+实验内容和技巧：我认为是在遵循RFC6962的基础上实现Merkle Tree。除开基础的sha-256，Merkle Tree实现了对多个数据进行加密整合，大幅度的压缩体积减少空间消耗。
+
+运行时间：11.86s
 
 Project7: Try to Implement this scheme
 
